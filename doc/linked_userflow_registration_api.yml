@@ -1,0 +1,362 @@
+openapi: 3.0.3
+info:
+  title: Linked Userflow API
+  description: 連携ユーザーID発行フローのAPI
+  version: 1.0.0
+
+servers:
+  - url: /tritrus/kanamicapi/community
+    description: 開発用
+  - url: http://localhost/3001/
+    description: モック用
+
+tags:
+  - name: Company
+    description: 法人に関する操作
+  - name: Hospital
+    description: 医療機関に関する操作
+  - name: Nursing Home
+    description: 介護事業所に関する操作
+  - name: User
+    description: ユーザーに関する操作
+
+paths:
+  /companyList:
+    get:
+      tags:
+        - Company
+      summary: 法人情報のリストを取得
+      description: 法人情報のリストを取得
+      parameters:
+        - name: name
+          in: query
+          description: 絞り込みのための法人名の一部
+          schema:
+            type: string
+            example: カナミック
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#components/schemas/Company'
+                example:
+                  - id: houjin001
+                    entryFlag: 1
+                    companyData: 社会福祉法人クラウン
+                    companyZip01: '001'
+                    companyZip02: 111
+                    companyAddress01: 東京都中野区●●●
+                    companyAddress02: 駅前●●●ビル２０３
+                  - id: houjin002
+                    entryFlag: 0
+                    companyData: 社会福祉法人クラウン
+                    companyZip01: 002
+                    companyZip02: 222
+                    companyAddress01: 東京都中野区●●●
+                    companyAddress02: 駅前●●●ビル２１０
+                  - id: houjin001
+                    entryFlag: 0
+                    companyData: 社会福祉法人クラウン
+                    companyZip01: 003
+                    companyZip02: 333
+                    companyAddress01: 東京都中野区●●●
+                    companyAddress02: 駅前●●●ビル３３３
+        400:
+          description: Bad Request
+
+    post:
+      tags:
+        - Company
+      summary: 法人情報の追加
+      description: 法人情報の追加
+      requestBody:
+        description: 法人情報を新規作成する
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Company'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        408:
+          description: Request Timeout
+
+  /hospitalList:
+    get:
+      tags:
+        - Hospital
+      summary: 医療機関のリストを取得
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Hospital'
+        400:
+          description: Bad Request
+    post:
+      tags:
+        - Hospital
+      summary: 医療機関情報の追加
+      description: 医療機関情報の追加
+      requestBody:
+        description: 医療機関情報を新規作成する
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Hospital'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        408:
+          description: Request Timeout
+
+  /nursinghomeList:
+    get:
+      tags:
+        - Nursing Home
+      summary: 介護事業所のリストを取得
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#components/schemas/Hospital'
+        400:
+          description: Bad Request
+    post:
+      tags:
+        - Nursing Home
+      summary: 介護事業所情報の追加
+      description: 介護事業所情報の追加
+      requestBody:
+        description: 介護事業所情報を新規作成する
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NursingHome'
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        408:
+          description: Request Timeout
+
+  /user:
+    post:
+      tags:
+        - User
+      summary: ユーザー情報の追加
+      description: ユーザー情報の追加
+      requestBody:
+        description: ユーザー情報を新規作成する
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+              required:
+                - firstName
+      responses:
+        204:
+          description: No Content
+        400:
+          description: Bad Request
+        408:
+          description: Request Timeout
+
+components:
+  schemas:
+    Company:
+      description: 法人情報
+      type: object
+      properties:
+        id:
+          description: 法人識別子
+          type: string
+          example: houjin001
+        entryFlag:
+          description: ??
+          type: integer
+          example: 1
+        companyData:
+          description: 法人名
+          type: string
+          example: 社会福祉法人カナミック
+        companyZip01:
+          description: 郵便番号(前半)
+          type: integer
+          example: 150
+        companyZip02:
+          description: 郵便番号(後半)
+          type: integer
+          example: 6031
+        companyAddress01:
+          description: 住所(前半)
+          type: string
+          example: 東京都渋谷区恵比寿4-20-3
+        companyAddress02:
+          description: 住所(後半)
+          type: string
+          example: 恵比寿ガーデンプレイスタワー31階
+
+    Hospital:
+      description: 医療機関情報
+      type: object
+      properties:
+        id:
+          description: 医療機関識別子
+          type: integer
+          example: 001
+        number:
+          description: 医療機関コード
+          type: integer
+          example: 0000001
+        name:
+          description: 医療機関名
+          type: string
+          example: xx医院
+
+    NursingHome:
+      description: 介護施設情報
+      type: object
+      properties:
+        id:
+          description: 介護事業所識別子
+          type: integer
+          example: 001
+        number:
+          description: 事業所番号
+          type: integer
+          example: 0000001
+        name:
+          description: 事業所名
+          type: string
+          example: カナミック訪問介護
+
+    User:
+      description: ユーザー情報
+      type: object
+      properties:
+        firstName:
+          description: 苗字
+          type: string
+          maxLength: 30
+          example: 田中
+        lastName:
+          description: 名前
+          type: string
+          maxLength: 30
+          example: 太郎
+        firstNameKana:
+          description: 苗字(カナ)
+          type: string
+          pattern: ^[ァ-ヴー]*$
+          maxLength: 30
+          example: タナカ
+        lastNameKana:
+          description: 名前(カナ)
+          type: string
+          pattern: ^[ァ-ヴー]*$
+          maxLength: 30
+          example: タロウ
+        sex:
+          description: >
+            性別
+              - 1: 男
+              - 2: 女
+          type: number
+          enum:
+            - 1 # 男
+            - 2 # 女
+          example: 1
+        birthday:
+          description: 誕生日
+          type: string
+          format: date
+          example: 1999-01-01
+        postCode:
+          description: 郵便番号 (ハイフンなし)
+          type: number
+          maxLength: 10
+          example: 1112222
+        address1:
+          description: 都道府県
+          type: string
+          maxLength: 20
+          example: 東京都
+        address2:
+          description: 住所
+          type: string
+          maxLength: 255
+          example:
+        address3:
+          description: 地区
+          type: string
+          maxLength: 2
+          example:
+        tel:
+          description: 電話番号 (ハイフンあり)
+          type: string
+          maxLength: 40
+          example: 1234-56-7890
+        mobileTel:
+          description: 携帯電話番号 (ハイフンあり)
+          type: string
+          maxLength: 40
+          example: 123-4567-8901
+        email:
+          description: メールアドレス
+          type: string
+          maxLength: 60
+          example: xxxx@gmail.com
+        mobileEmail:
+          description: 携帯メールアドレス
+          type: string
+          maxLength: 60
+          example: xxxx@gmail.com
+        fax:
+          description: FAX番号
+          type: number
+          maxLength: 40
+          example: 1234567890
+        faxExist:
+          description: >
+            FAX保有
+              - 0: 無し
+              - 1: 有り
+          type: number
+          enum:
+            - 0 # 無し
+            - 1 # 有り
+          example: 0
+        emergencyAddress:
+          description: 緊急連絡先
+          type: string
+          maxLength: 1000
+          example:
+        memo:
+          description: 備考
+          type: string
+          maxLength: 1000
+          example:
+
+      required:
+        - firstName
+        - lastName
+        - firstNameKana
+        - lastNameKana
