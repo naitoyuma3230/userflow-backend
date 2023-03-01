@@ -13,15 +13,20 @@ datasource db {
 
 model User {
   id         Int         @id @default(autoincrement())
-  name       String
-  facility   Facility?   @relation(fields: [facilityId], references: [id])
+  firstName  String
+  lastName   String
+  birthDate  DateTime
+  address    String
+  tel        String
+  email      String
+  facility   Facility   @relation(fields: [facilityId], references: [id])
   facilityId Int
 }
 
 model Facility {
   id        Int       @id @default(autoincrement())
   name      String
-  user      User[]      
+  user      User[]     
   hospital  Hospital[]
   nursingHome NursingHome[]
 }
@@ -47,6 +52,8 @@ model NursingHome {
 model Company {
   id        Int       @id @default(autoincrement())
   name      String
+  postCode  String
+  address   String
   hospital  Hospital[]
   nursingHome NursingHome[]
 }

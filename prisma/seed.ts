@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 async function main() {
   const hospital1 = await prisma.hospital.create({
     data: {
-      name: 'Hospital A',
+      name: 'bbb医院',
       facility: {
         create: {
           name: 'Facility A',
@@ -13,7 +13,9 @@ async function main() {
       },
       company: {
         create: {
-          name: 'Company A',
+          name: '社会福祉法人サクラ',
+          postCode: '001-0001',
+          address: '新潟県長岡市軽井沢671-2',
         },
       },
     },
@@ -21,7 +23,7 @@ async function main() {
 
   const hospital2 = await prisma.hospital.create({
     data: {
-      name: 'Hospital B',
+      name: 'aaa医院',
       facility: {
         create: {
           name: 'Facility B',
@@ -29,7 +31,9 @@ async function main() {
       },
       company: {
         create: {
-          name: 'Company B',
+          name: '社会福祉法人バラ',
+          postCode: '002-0002',
+          address: '京都府京都市南区西九条西柳ノ内町88-15',
         },
       },
     },
@@ -37,7 +41,7 @@ async function main() {
 
   const nursingHome1 = await prisma.nursingHome.create({
     data: {
-      name: 'Nursing Home A',
+      name: 'bbb介護',
       facility: {
         create: {
           name: 'Facility C',
@@ -45,7 +49,9 @@ async function main() {
       },
       company: {
         create: {
-          name: 'Company C',
+          name: '社会福祉法人アジサイ',
+          postCode: '003-0003',
+          address: '石川県能美市三ツ屋町910-10',
         },
       },
     },
@@ -53,7 +59,7 @@ async function main() {
 
   const nursingHome2 = await prisma.nursingHome.create({
     data: {
-      name: 'Nursing Home B',
+      name: 'aaa介護',
       facility: {
         create: {
           name: 'Facility D',
@@ -61,7 +67,9 @@ async function main() {
       },
       company: {
         create: {
-          name: 'Company D',
+          name: '社会福祉法人ガーベラ',
+          postCode: '004-0004',
+          address: '鹿児島県指宿市山川金生町92-10',
         },
       },
     },
@@ -69,34 +77,56 @@ async function main() {
 
   await prisma.company.create({
     data: {
-      name: 'Company E',
+      name: '社会福祉法人サクラ',
+      postCode: '001-0001',
+      address: '新潟県長岡市軽井沢671-2',
     },
   });
 
   await prisma.user.create({
     data: {
-      name: 'User A',
+      firstName: '田中',
+      lastName: '太郎',
+      birthDate: '1999-01-01T00:00:00.000Z',
+      address: '東京都',
+      tel: '123-456-789',
+      email: 'xxxx@gmail.com',
       facilityId: hospital1.facilityId,
     },
   });
 
   await prisma.user.create({
     data: {
-      name: 'User B',
+      firstName: '加藤',
+      lastName: '次郎',
+      birthDate: '1909-01-01T00:00:00.000Z',
+      address: '東京都',
+      tel: '741-852-963',
+      email: 'sample@example.com',
       facilityId: hospital2.facilityId,
     },
   });
 
   await prisma.user.create({
     data: {
-      name: 'User C',
+      firstName: '史郎',
+      lastName: '政宗',
+      birthDate: '1989-01-01T00:00:00.000Z',
+      address: '東京都',
+      tel: '741-999-999',
+      email: 'test@example.com',
       facilityId: nursingHome1.facilityId,
     },
   });
 
   await prisma.user.create({
     data: {
-      name: 'User D',
+      firstName: '佐藤',
+      lastName: '八郎',
+      birthDate: '1988-01-01T00:00:00.000Z',
+      address: '東京都',
+      tel: '741-666-963',
+      email: 'example@example.com',
       facilityId: nursingHome2.facilityId,
     },
   });
