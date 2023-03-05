@@ -28,7 +28,7 @@ model Facility {
   name      String
   user      User[]     
   hospital  Hospital[]
-  nursingHome NursingHome[]
+  carehome Carehome[]
 }
 
 model Hospital {
@@ -40,7 +40,7 @@ model Hospital {
   companyId Int
 }
 
-model NursingHome {
+model Carehome {
   id        Int       @id @default(autoincrement())
   name      String    
   facility  Facility?  @relation(fields: [facilityId], references: [id])
@@ -55,5 +55,5 @@ model Company {
   postCode  String
   address   String
   hospital  Hospital[]
-  nursingHome NursingHome[]
+  carehome Carehome[]
 }

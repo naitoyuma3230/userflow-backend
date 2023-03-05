@@ -39,7 +39,7 @@ async function main() {
     },
   });
 
-  const nursingHome1 = await prisma.nursingHome.create({
+  const carehome1 = await prisma.carehome.create({
     data: {
       name: 'bbb介護',
       facility: {
@@ -57,7 +57,7 @@ async function main() {
     },
   });
 
-  const nursingHome2 = await prisma.nursingHome.create({
+  const carehome2 = await prisma.carehome.create({
     data: {
       name: 'aaa介護',
       facility: {
@@ -115,7 +115,7 @@ async function main() {
       address: '東京都',
       tel: '741-999-999',
       email: 'test@example.com',
-      facilityId: nursingHome1.facilityId,
+      facilityId: carehome1.facilityId,
     },
   });
 
@@ -127,7 +127,7 @@ async function main() {
       address: '東京都',
       tel: '741-666-963',
       email: 'example@example.com',
-      facilityId: nursingHome2.facilityId,
+      facilityId: carehome2.facilityId,
     },
   });
 
