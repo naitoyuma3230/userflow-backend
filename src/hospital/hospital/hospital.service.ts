@@ -8,4 +8,13 @@ export class HospitalService {
   async findAll(): Promise<Hospital[]> {
     return await prisma.hospital.findMany({});
   }
+  async findByKeyword(keyword: string): Promise<Hospital[] | null> {
+    return await prisma.hospital.findMany({
+      where: {
+        name: {
+          contains: keyword,
+        },
+      },
+    });
+  }
 }
