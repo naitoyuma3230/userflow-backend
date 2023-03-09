@@ -7,7 +7,7 @@ import {
   Body,
   Param,
 } from '@nestjs/common';
-import { CompanyService } from './company.service';
+import { CompanyService } from '../service/company.service';
 import { Prisma, Company } from '@prisma/client';
 
 @Controller('company')
@@ -19,10 +19,10 @@ export class CompanyController {
     return await this.companyService.findAll();
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Company | null> {
-    return await this.companyService.findOne(Number(id));
-  }
+  // @Get(':id')
+  // async findOne(@Param('id') id: string): Promise<Company | null> {
+  //   return await this.companyService.findOne(Number(id));
+  // }
 
   @Get('/search/:keyword')
   async findByKeyword(

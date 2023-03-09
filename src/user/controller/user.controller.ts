@@ -21,6 +21,12 @@ export class UserController {
   async createUser(@Body() postData: User): Promise<User> {
     return this.userService.createUser(postData);
   }
+  @Post('/withall')
+  async createUserWidthAlldata(
+    @Body() postData: UserWithAlldata,
+  ): Promise<UserWithAlldata> {
+    return this.userService.createUserWidthAlldata(postData);
+  }
   @Get(':id')
   async getUser(@Param('id') id: number): Promise<User | null> {
     return this.userService.getUser(id);
