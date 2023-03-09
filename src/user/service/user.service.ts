@@ -33,6 +33,9 @@ export class UserService {
       data: data,
     });
   }
+  async createUserWidthAlldata(postData: UserWithAlldata) {
+    return postData;
+  }
   async deleteUser(id: number): Promise<User> {
     return this.prisma.user.delete({
       where: { id: Number(id) },

@@ -11,13 +11,17 @@ export class CompanyService {
   }
 
   async findByKeyword(keyword: string): Promise<Company[]> {
-    return prisma.company.findMany({
-      where: {
-        name: {
-          contains: keyword,
+    if (keyword == '' || !keyword) {
+      return await prisma.company.findMany();
+    } else {
+      return await prisma.company.findMany({
+        where: {
+          name: {
+            contains: keyword,
+          },
         },
-      },
-    });
+      });
+    }
   }
 
   async findOne(id: number): Promise<Company | null> {
