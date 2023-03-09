@@ -1,0 +1,41 @@
+[33mcommit 1bfe3184aac8057206b3beece9afc8794c82e7f4[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: 内藤祐馬 <naitoyuma@outlook.jp>
+Date:   Thu Mar 9 17:55:28 2023 +0900
+
+    openai
+
+[33mcommit 520334abb026bd03c1eaa2740429e5c5c6f5e639[m
+Author: 内藤祐馬 <naitoyuma@outlook.jp>
+Date:   Thu Mar 9 14:50:56 2023 +0900
+
+    空Postに対応
+
+[33mcommit 5b87b59d83b9cb9ea88e6535b614632f837bd0a8[m
+Author: 内藤祐馬 <naitoyuma@outlook.jp>
+Date:   Tue Mar 7 10:57:16 2023 +0900
+
+    search
+
+[33mcommit 507e85dbe61a93784f0f7e5fbf1e3be5b529cba1[m
+Author: naitoyuma3230 <naitoyuma@outlook.jp>
+Date:   Mon Mar 6 02:28:46 2023 +0900
+
+    全テーブルに対するREST作成
+
+[33mcommit 300e1c43a2a6083eec24e2137339037014412acf[m
+Author: 内藤祐馬 <naitoyuma@outlook.jp>
+Date:   Wed Mar 1 17:18:06 2023 +0900
+
+    db詳細migrate,seed作成, REST user完成
+
+[33mcommit 9f2be5e2294f290dcda6e2a82241b27ac9c03b4f[m
+Author: 内藤祐馬 <naitoyuma@outlook.jp>
+Date:   Tue Feb 28 17:13:53 2023 +0900
+
+    Prisma seed migrate
+
+[33mcommit ff7d45367ca8e1742afc22d9b1828f281ae219a0[m
+Author: 内藤祐馬 <naitoyuma@outlook.jp>
+Date:   Tue Feb 28 17:13:45 2023 +0900
+
+    Rest API
