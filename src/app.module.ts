@@ -7,6 +7,7 @@ import { CompanyModule } from './company/company.module';
 import { FacilityModule } from './facility/facility.module';
 import { HospitalModule } from './hospital/hospital.module';
 import { CarehomeModule } from './carehome/carehome.module';
+import { OpenaiModule } from './openai/openai.module';
 
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { CarehomeModule } from './carehome/carehome.module';
     FacilityModule,
     HospitalModule,
     CarehomeModule,
+    OpenaiModule,
   ],
   controllers: [AppController],
   providers: [AppService, PrismaService],
