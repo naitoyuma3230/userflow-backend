@@ -131,6 +131,19 @@ async function main() {
     },
   });
 
+  await prisma.question.create({
+    data: {
+      title: 'テスト質問',
+      content: 'テスト質問内容',
+      answer: {
+        create: {
+          content: 'テスト回答内容',
+          isLiked: true,
+        },
+      },
+    },
+  });
+
   console.log('Seed data created!');
 }
 
