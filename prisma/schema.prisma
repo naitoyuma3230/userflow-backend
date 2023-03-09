@@ -57,3 +57,17 @@ model Company {
   hospital  Hospital[]
   carehome Carehome[]
 }
+
+model Question {
+  id      Int     @id @default(autoincrement())
+  title   String
+  content String
+  answer  Answer? @relation(fields: [id], references: [id])
+}
+
+model Answer {
+  id          Int       @id @default(autoincrement())
+  content     String
+  isLiked     Boolean?
+  question    Question?
+}
