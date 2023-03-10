@@ -17,16 +17,20 @@ export class UserController {
   async getAllUser(): Promise<User[]> {
     return this.userService.getAllUser();
   }
+  @Get('/all/:id')
+  async getUserWithAllData(@Param('id') id: number): Promise<User | null> {
+    return this.userService.getAllUserWithAllData(id);
+  }
   @Post()
   async createUser(@Body() postData: User): Promise<User> {
     return this.userService.createUser(postData);
   }
-  @Post('/withall')
-  async createUserWidthAlldata(
-    @Body() postData: UserWithAlldata,
-  ): Promise<UserWithAlldata> {
-    return this.userService.createUserWidthAlldata(postData);
-  }
+  // @Post('/all')
+  // async createUserWidthAlldata(
+  //   @Body() postData: UsersWithAlldata,
+  // ): Promise<UsersWithAlldata> {
+  //   return this.userService.createUserWidthAlldata(postData);
+  // }
   @Get(':id')
   async getUser(@Param('id') id: number): Promise<User | null> {
     return this.userService.getUser(id);

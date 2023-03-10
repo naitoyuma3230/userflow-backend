@@ -9,6 +9,48 @@ export class UserService {
   async getAllUser(): Promise<User[]> {
     return this.prisma.user.findMany();
   }
+  async getAllUserWithAllData(id: number): Promise<User | null> {
+    const userWithFacility = await this.prisma.user.findUnique({
+      where: {
+        id: Number(id),
+      },
+      include: {
+        facility: true,
+      },
+    });
+
+    const hospital = await this.prisma.hospital.findUnique({
+      where: {
+        id: userWithFacility.facilityId,
+      },
+    });
+
+    const carehome = await this.prisma.carehome.findUnique({
+      where: {
+        id: userWithFacility.facilityId,
+      },
+    });
+
+    if (hospital) {
+      const user = {
+        ...userWithFacility,
+        hospital: {
+          ...hospital,
+        },
+      };
+      return user;
+    } else if (carehome) {
+      const user = {
+        ...userWithFacility,
+        carehome: {
+          ...carehome,
+        },
+      };
+      return user;
+    } else {
+      return null;
+    }
+  }
   async getUser(id: number): Promise<User | null> {
     return this.prisma.user.findUnique({ where: { id: Number(id) } });
   }
@@ -33,9 +75,7 @@ export class UserService {
       data: data,
     });
   }
-  async createUserWidthAlldata(postData: UserWithAlldata) {
-    return postData;
-  }
+  // async createUserWidthAlldata(postData: UsersWithAlldata) {}
   async deleteUser(id: number): Promise<User> {
     return this.prisma.user.delete({
       where: { id: Number(id) },

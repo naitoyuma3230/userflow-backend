@@ -50,3 +50,9 @@ interface User {
   company?: Company;
   office?: Office;
 }
+
+export interface UsersWithAlldata {
+  users: User[];
+  company: Company;
+  office: Office;
+}
